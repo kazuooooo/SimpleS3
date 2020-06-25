@@ -2,7 +2,6 @@
 Very thin s3 wrapper for swift.
 Currently support only in Upload and Delete Object.
 
-[![CI Status](https://img.shields.io/travis/kazuooooo/SimpleS3.svg?style=flat)](https://travis-ci.org/kazuooooo/SimpleS3)
 [![Version](https://img.shields.io/cocoapods/v/SimpleS3.svg?style=flat)](https://cocoapods.org/pods/SimpleS3)
 [![License](https://img.shields.io/cocoapods/l/SimpleS3.svg?style=flat)](https://cocoapods.org/pods/SimpleS3)
 [![Platform](https://img.shields.io/cocoapods/p/SimpleS3.svg?style=flat)](https://cocoapods.org/pods/SimpleS3)
