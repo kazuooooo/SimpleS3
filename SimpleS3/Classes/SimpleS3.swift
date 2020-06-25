@@ -10,11 +10,16 @@
 import Foundation
 import AWSS3
 
-public class SimpleS3 {
-    public static func initCognito(
+public struct SimpleS3 {
+    static var bucketName: String!
+    
+    public static func setUp(
         region: AWSRegionType,
-        identityPoolId: String
-    ){
+        identityPoolId: String,
+        defaultBucketName: String
+    ) {
+        
+        // Init Cognito
         let credentialsProvider = AWSCognitoCredentialsProvider(
            regionType: region,
            identityPoolId: identityPoolId
@@ -26,10 +31,11 @@ public class SimpleS3 {
         )
 
         AWSServiceManager.default().defaultServiceConfiguration = configuration
+        
+        self.bucketName = defaultBucketName
     }
 
     public static func uploadObject(
-        bucketName: String,
         fileName: String,
         data: Data,
         contentType: String, // ex) "image/png",
@@ -51,7 +57,29 @@ public class SimpleS3 {
         )
     }
     
-    public static func deleteObject(bucketName: String, fileName: String){
+    public static func deleteObject(
+        fileName: String,
+        handler: @escaping (_ : Result<Bool, Error>) -> Void
+    ) {
+        let s3 = AWSS3.default()
+        let deleteObjectRequest = AWSS3DeleteObjectRequest()!
+        deleteObjectRequest.bucket = bucketName
+        deleteObjectRequest.key = fileName
         
+        s3.deleteObject(deleteObjectRequest).continueWith(block: { (task:AWSTask) -> AnyObject? in
+            if let error = task.error {
+                print("Error occurred: \(error)")
+                handler(.failure(error))
+                return nil
+            }
+            print("Deleted successfully.")
+            handler(.success(true))
+            return nil
+        })
     }
+}
+
+public enum Result<T, Error: Swift.Error> {
+    case success(T)
+    case failure(Error)
 }
