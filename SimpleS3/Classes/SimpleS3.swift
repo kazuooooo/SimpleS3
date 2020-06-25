@@ -16,7 +16,7 @@ public struct SimpleS3 {
     public static func setUp(
         region: AWSRegionType,
         identityPoolId: String,
-        defaultBucketName: String
+        bucketName: String
     ) {
         
         // Init Cognito
@@ -32,7 +32,7 @@ public struct SimpleS3 {
 
         AWSServiceManager.default().defaultServiceConfiguration = configuration
         
-        self.bucketName = defaultBucketName
+        self.bucketName = bucketName
     }
 
     public static func uploadObject(

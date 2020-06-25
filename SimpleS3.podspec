@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'SimpleS3'
   s.version          = '0.1.0'
-  s.summary          = 'Thin wrapper for handling S3 in swift'
+  s.summary          = 'Thin wrapper for handling S3 in swift.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -19,6 +19,7 @@ Pod::Spec.new do |s|
 
   s.description      = <<-DESC
   Thin wrapper for handling S3 in swift
+  Easier than ever to handle S3 in swift.
   DESC
 
   s.homepage         = 'https://github.com/kazuooooo/SimpleS3'
@@ -31,13 +32,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'SimpleS3/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'SimpleS3' => ['SimpleS3/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
+  s.swift_version = '5.2'
   s.dependency 'AWSS3', '~> 2.13.0'
   s.dependency 'AWSCognito', '~> 2.13.0'
 end
