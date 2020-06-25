@@ -1,0 +1,6 @@
+use_frameworks!
+target 'SimpleS3_Tests' do
+  pod 'SimpleS3', :path => '../'
+  
+  
+end
